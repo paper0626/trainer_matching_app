@@ -1,0 +1,15 @@
+<div class="main trainers-index">
+  <div class="container">
+    <h1 class="trainers-heading">トレーナー一覧画面です</h1>
+    <% @trainers.each do |trainer| %>
+      <div class="trainers-index-item">
+        <div class="trainer-left">
+          <img src="/default.jpg"></img>
+        </div>
+        <div class="trainer-right">
+          <%= link_to(trainer.name, "/trainers/#{trainer.id}") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

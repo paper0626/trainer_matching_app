@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TrainerMatchingApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <!--ヘッダー-->
+    <header>
+      <div class="header-logo">
+        <%= link_to('TrainerMatchingApp', '/') %>
+      </div>
+      <ul class="header-menus">
+        <li><%= link_to('トレーナーを探す', '/trainers/index') %></li>
+        <li><%= link_to('ログイン', '/users/login') %></li>
+        <li><%= link_to('会員登録', '/users/signup') %></li>
+        <li><%= link_to('トレーナーの方はこちら', '/trainers/signup') %></li>
+      </ul>
+    </header>
+    <!--ヘッダーここまで-->
+    
+    <!--サクセス・エラーメッセージ-->
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+// trainers/index ////////////////////
+.trainers-heading{
+  font-weight: 300;
+  margin: 60px 0 20px;
+  font-size: 48px;
+}
+
+.trainers-index-item {
+  padding: 20px 30px;
+  background-color: white;
+  overflow: hidden; //要素のボックスからはみ出た部分は隠す
+  box-shadow: 0 2px 6px #c1ced7;
+  display: table;
+  width: 100%;
+}
+
+.trainer-left{
+  float: left;
+  width: 10%;
+}
+
+.trainer-right{
+  width: 90%;
+  padding-left: 25px;
+  text-align: left;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+// trainers/show //////////////////
+.trainer-show{
+  text-align: center;
+}
+
+.trainer-information{
+  padding-bottom: 20px;
+}
+
+.trainer-information img{
+  width: 80px;
+  height: 80px;
+  margin: 20px 0 10px;
+}
+
+// trainers/new ////////////////////
+.trainer-new{
+  text-align: center;
+}
+
