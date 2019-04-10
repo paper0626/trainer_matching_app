@@ -1,4 +1,4 @@
-<div class="main trainer-new">
+<div class="main trainer-edit">
   <div class="container">
     <!--エラーメッセージ表示-->
     <div class="error-messages">
@@ -9,9 +9,9 @@
       <% end %>
     </div>
     
-    <!--トレーナー登録フォーム-->    
+    <!--トレーナー情報編集フォーム-->    
     <div class="trainer-form">
-      <%= form_with(url: '/trainers/create', local: true) do |form| %>
+      <%= form_with(url: "/trainers/#{@trainer.id}/update", local: true) do |form| %>
         <p>名前</p>
         <input type="text" name="name" value="<%= @trainer.name %>">
         <p>メールアドレス</p>
@@ -19,7 +19,7 @@
         <p>パスワード</p>
         <input type="password" name="password" value="<%= @trainer.password %>">
         <div class="submit">
-          <input type="submit" value="登録する">
+          <input type="submit" value="保存する">
         </div>
       <% end %>
     </div>

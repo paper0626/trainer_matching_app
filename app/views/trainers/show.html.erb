@@ -4,7 +4,7 @@
       <img src="/default.jpg">
       <h2><%= @trainer.name %></h2>
       <p><%= @trainer.email %></p>
-      編集
+      <%= link_to('編集', "/trainers/#{@trainer.id}/edit") %>
       削除
     </div>
   </div>

@@ -24,4 +24,24 @@ class TrainersController < ApplicationController
       render('trainers/new')
     end
   end
+  
+  # トレーナー情報編集画面
+  def edit
+    @trainer = Trainer.find_by(id: params[:id])
+  end
+  
+  # トレーナー情報編集（update）
+  def update
+    @trainer = Trainer.find_by(id: params[:id])
+    @trainer.name = params[:name]
+    @trainer.email = params[:email]
+    @trainer.password = params[:password]
+    
+    if @trainer.save
+      flash[:notice] = '登録情報を編集しました'
+      redirect_to("/trainers/#{@trainer.id}")
+    else
+      render("trainers/edit")
+    end
+  end
 end

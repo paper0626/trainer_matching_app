@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   get 'trainers/signup' => 'trainers#new' #トレーナー新規登録
   get 'trainers/index' => 'trainers#index' #トレーナー一覧
   get 'trainers/:id/' => 'trainers#show' #トレーナー詳細
+  get 'trainers/:id/edit' => 'trainers#edit' #トレーナー情報編集
   
   post 'trainers/create' => 'trainers#create' #トレーナー新規登録（post）
+  post 'trainers/:id/update' => 'trainers#update' #トレーナー情報編集（post）
   
   get 'users/signup' => 'users#new' #ユーザ新規登録
   get 'users/login' => 'users#login_form' #ユーザログイン画面
