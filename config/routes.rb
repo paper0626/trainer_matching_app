@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   
   post 'trainers/create' => 'trainers#create' #トレーナー新規登録（post）
   post 'trainers/:id/update' => 'trainers#update' #トレーナー情報編集（post）
+  post 'trainers/:id/delete' => 'trainers#delete' #トレーナー削除
   
   get 'users/signup' => 'users#new' #ユーザ新規登録
   get 'users/login' => 'users#login_form' #ユーザログイン画面

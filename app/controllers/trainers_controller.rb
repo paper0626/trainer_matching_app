@@ -44,4 +44,12 @@ class TrainersController < ApplicationController
       render("trainers/edit")
     end
   end
+  
+  # トレーナー情報削除（delete）
+  def delete
+    @trainer = Trainer.find_by(id: params[:id])
+    @trainer.destroy
+    flash[:notice] = '登録情報を削除しました'
+    redirect_to('/')
+  end
 end

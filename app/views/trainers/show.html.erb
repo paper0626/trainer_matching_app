@@ -5,7 +5,7 @@
       <h2><%= @trainer.name %></h2>
       <p><%= @trainer.email %></p>
       <%= link_to('編集', "/trainers/#{@trainer.id}/edit") %>
-      削除
+      <%= link_to('削除', "/trainers/#{@trainer.id}/delete", method: :post) %>
     </div>
   </div>
 </div>
