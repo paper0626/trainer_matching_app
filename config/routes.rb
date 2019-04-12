@@ -18,10 +18,9 @@ Rails.application.routes.draw do
   
   post 'users/create' => 'users#create' #ユーザ新規登録（post）
   post 'users/:id/update' => 'users#update' #ユーザ情報編集（post）
-  post 'users/:id/delete' => 'users#delete' #ユーザ削除（post）
   post 'users/login' => 'users#login' #ユーザログイン（post）
   post 'users/:id/destroy' => 'users#destroy' #ユーザ削除
-  post 'users/:id/logout' => 'users#logout' #ユーザログアウト
+  post 'users/logout' => 'users#logout' #ユーザログアウト
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
