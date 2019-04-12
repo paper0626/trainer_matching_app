@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user, {only: [:edit, :update, :destroy]} #ログインしていないユーザに対するアクセス制限
+  before_action :forbid_login_user, {only: [:new, :create, :login_form, :login]} #ログインしているユーザに対するアクセス制限
+  before_action :ensure_correct_user, {only: [:edit, :update, :destroy]} #他のユーザ情報の編集・削除などに対するアクセス制限
+  
+  
   # ユーザー一覧表示
   def index
     @users = User.all
@@ -86,5 +91,12 @@ class UsersController < ApplicationController
     flash[:notice] = 'ログアウトしました'
     session[:user_id] = nil
     redirect_to('/users/login')
+  end
+  
+  # 他のユーザ情報を編集or削除できないようにする
+  def ensure_correct_user
+    if params[:id] != @current_user.id
+      flash[:notice] = 'アクセスできません'
+    end
   end
 end

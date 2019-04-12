@@ -1,4 +1,7 @@
 class TrainersController < ApplicationController
+  before_action :authenticate_user, {only: [:new, :create, :edit, :update, :destroy]} #ログインしていないユーザに対するアクセス制限
+  before_action :ensure_correct_user, {only: [:edit, :update, :destroy]} #他のユーザ情報の編集・削除などに対するアクセス制限
+  
   # トレーナー一覧表示
   def index
     @trainers = Trainer.all
@@ -49,5 +52,13 @@ class TrainersController < ApplicationController
     @trainer.destroy
     flash[:notice] = '登録情報を削除しました'
     redirect_to("/users/#{@trainer.user_id}")
+  end
+  
+  # 他のユーザ情報を編集or削除できないようにする
+  def ensure_correct_user
+    @trainer = Trainer.find_by(id: params[:id])
+    if @current_user.id != @trainer.user_id #今ログインしているユーザ　!= 編集しようとしているトレーナーのユーザーid
+      flash[:notice] = 'アクセスできません'
+    end
   end
 end
