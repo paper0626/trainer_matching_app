@@ -12,12 +12,8 @@
     <!--トレーナー情報編集フォーム-->    
     <div class="trainer-form">
       <%= form_with(url: "/trainers/#{@trainer.id}/update", local: true) do |form| %>
-        <p>名前</p>
-        <input type="text" name="name" value="<%= @trainer.name %>">
-        <p>メールアドレス</p>
-        <input type="email" name="email" value="<%= @trainer.email %>">
-        <p>パスワード</p>
-        <input type="password" name="password" value="<%= @trainer.password %>">
+        <p>自己PR・メッセージ</p>
+          <textarea name="message" cols="40" rows="6" value="<%= @trainer.message %>"></textarea>
         <div class="submit">
           <input type="submit" value="保存する">
         </div>

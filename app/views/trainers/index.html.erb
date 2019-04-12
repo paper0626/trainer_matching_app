@@ -7,7 +7,7 @@
           <img src="/default.jpg"></img>
         </div>
         <div class="trainer-right">
-          <%= link_to(trainer.name, "/trainers/#{trainer.id}") %>
+          <%= link_to(trainer.user.name, "/trainers/#{trainer.id}") %>
         </div>
       </div>
     <% end %>

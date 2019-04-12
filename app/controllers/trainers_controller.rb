@@ -4,19 +4,19 @@ class TrainersController < ApplicationController
     @trainers = Trainer.all
   end
   
-  # トレーナー新規登録画面
-  def new
-    @trainer = Trainer.new
-  end
-  
   # トレーナー詳細画面
   def show
     @trainer = Trainer.find_by(id: params[:id])
   end
   
+  # トレーナー新規登録画面
+  def new
+    @trainer = Trainer.new
+  end
+  
   # トレーナー新規登録（create）
   def create
-    @trainer = Trainer.new(name: params[:name], email: params[:email], password: params[:password])
+    @trainer = Trainer.new(user_id: @current_user.id, message: params[:message])
     if @trainer.save
       flash[:notice] = 'トレーナーとして新規登録しました'
       redirect_to("/trainers/#{@trainer.id}")
@@ -33,9 +33,7 @@ class TrainersController < ApplicationController
   # トレーナー情報編集（update）
   def update
     @trainer = Trainer.find_by(id: params[:id])
-    @trainer.name = params[:name]
-    @trainer.email = params[:email]
-    @trainer.password = params[:password]
+    @trainer.message = params[:message]
     
     if @trainer.save
       flash[:notice] = '登録情報を編集しました'
@@ -45,11 +43,11 @@ class TrainersController < ApplicationController
     end
   end
   
-  # トレーナー情報削除（delete）
-  def delete
+  # トレーナー情報削除（destroy）
+  def destroy
     @trainer = Trainer.find_by(id: params[:id])
     @trainer.destroy
     flash[:notice] = '登録情報を削除しました'
-    redirect_to('/')
+    redirect_to("/users/#{@trainer.user_id}")
   end
 end
