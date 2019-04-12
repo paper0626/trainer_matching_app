@@ -14,12 +14,21 @@
       <div class="header-logo">
         <%= link_to('TrainerMatchingApp', '/') %>
       </div>
+      <% if @current_user %> 
       <ul class="header-menus">
+        <li><%= link_to('ユーザー一覧', '/users/index') %></li>
+        <li><%= link_to('トレーナーを探す', '/trainers/index') %></li>
+        <li><%= link_to('ログアウト', "/users/#{@current_user.id}/logout", method: :post) %></li>
+        <li><%= link_to('マイページ', "/users/#{@current_user.id}") %></li>
+      </ul>
+      <% else %>
+      <ul class="header-menus">
+        <li><%= link_to('ユーザー一覧', '/users/index') %></li>
         <li><%= link_to('トレーナーを探す', '/trainers/index') %></li>
         <li><%= link_to('ログイン', '/users/login') %></li>
         <li><%= link_to('会員登録', '/users/signup') %></li>
-        <li><%= link_to('トレーナーの方はこちら', '/trainers/signup') %></li>
       </ul>
+      <% end %>
     </header>
     <!--ヘッダーここまで-->
     

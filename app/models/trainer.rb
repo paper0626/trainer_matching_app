@@ -1,8 +1,7 @@
 class Trainer < ApplicationRecord
-  has_secure_password
+  validates :user_id, {presence: true}
   
-  validates :name, {presence: true}
-  validates :email, {presence: true}
-  validates :password, {presence: true}
-  
+  def user
+    return User.find_by(id: self.user_id)
+  end
 end

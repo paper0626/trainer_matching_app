@@ -2,10 +2,11 @@
   <div class="container">
     <div class="trainer-information">
       <img src="/default.jpg">
-      <h2><%= @trainer.name %></h2>
-      <p><%= @trainer.email %></p>
-      <%= link_to('編集', "/trainers/#{@trainer.id}/edit") %>
-      <%= link_to('削除', "/trainers/#{@trainer.id}/delete", method: :post) %>
+      <h2><%= @trainer.user.name %></h2>
+      <p><%= @trainer.user.email %></p>
+      <p><%= @trainer.message %></p>
+      <%= link_to('トレーナー情報編集', "/trainers/#{@trainer.id}/edit") %>
+      <%= link_to('トレーナー情報削除', "/trainers/#{@trainer.id}/destroy", method: :post, data: {confirm: '本当に削除してよろしいですか？'}) %>
     </div>
   </div>
 </div>
