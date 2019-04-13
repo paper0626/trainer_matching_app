@@ -1,23 +1,24 @@
 <div class="main trainer-new">
   <div class="container">
-    <!--エラーメッセージ表示-->
-    <div class="error-messages">
-      <% if @trainer.errors.any? %>
-        <% @trainer.errors.full_messages.each do |message| %>
-          <p><%= message %></p>
-        <% end %>
-      <% end %>
-    </div>
-    
-    <!--トレーナー登録フォーム-->    
-    <div class="trainer-form">
-      <%= form_with(url: '/trainers/create', local: true) do |form| %>
-        <p>自己PR・メッセージ</p>
+    <h1 class="form-heading">トレーナー情報登録</h1>
+    <%= form_with(url: '/trainers/create', local: true) do |form| %>
+      <div class="form">
+        <div class="form-body">
+          <!--エラーメッセージ表示-->
+          <div class="form-error">
+            <% if @trainer.errors.any? %>
+              <% @trainer.errors.full_messages.each do |message| %>
+                <p><%= message %></p>
+              <% end %>
+            <% end %>
+          </div>
+      
+          <!--トレーナー登録フォーム-->    
+          <p>自己PR・メッセージ</p>
           <textarea name="message" cols="40" rows="6" value="<%= @trainer.message %>"></textarea>
-        <div class="submit">
           <input type="submit" value="登録する">
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>

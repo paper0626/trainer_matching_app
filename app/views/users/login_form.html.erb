@@ -1,24 +1,25 @@
 <div class="main user-login-form">
   <div class="container">
-    <!--エラーメッセージ表示-->
-    <div class="error-messages">
-      <% if @error_message %>
-        <p><%= @error_message %></p>
-      <% end %>
-    </div>
-    
-    <!--ユーザーログインフォーム-->    
-    <h1>ユーザーログイン画面です</h1>
-    <div class="user-form">
-      <%= form_with(url: '/users/login', local: true) do |form| %>
-        <p>メールアドレス</p>
-        <input type="email" name="email" value="<%= @email %>">
-        <p>パスワード</p>
-        <input type="password" name="password" value="<%= @password %>">
-        <div class="submit">
-          <input type="submit" value="ログイン">
+    <div class="form-heading">ログイン画面</div>
+    <div class="form user-form">
+      <div class="form-body">
+        <!--エラーメッセージ表示-->
+        <div class="form-error">
+          <% if @error_message %>
+            <%= @error_message %></p>
+          <% end %>
         </div>
-      <% end %>
+      
+        <!--ユーザーログインフォーム-->    
+        <%= form_with(url: '/users/login', local: true) do |form| %>
+          <p>メールアドレス</p>
+          <input type="email" name="email" value="<%= @email %>">
+          <p>パスワード</p>
+          <input type="password" name="password" value="<%= @password %>">
+          <div class="submit">
+          <input type="submit" value="ログイン">
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
