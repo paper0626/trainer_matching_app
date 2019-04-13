@@ -1,28 +1,29 @@
 <div class="main user-new">
   <div class="container">
-    <!--エラーメッセージ表示-->
-    <div class="error-messages">
-      <% if @user.errors.any? %>
-        <% @user.errors.full_messages.each do |message| %>
-          <p><%= message %></p>
-        <% end %>
-      <% end %>
-    </div>
-    
-    <!--ユーザーー登録フォーム-->    
-    <h1>ユーザー登録画面です</h1>
-    <div class="user-form">
-      <%= form_with(url: '/users/create', local: true) do |form| %>
-        <p>名前</p>
-        <input type="text" name="name" value="<%= @user.name %>">
-        <p>メールアドレス</p>
-        <input type="email" name="email" value="<%= @user.email %>">
-        <p>パスワード</p>
-        <input type="password" name="password" value="<%= @user.password %>">
-        <div class="submit">
-          <input type="submit" value="登録する">
+    <div class="form-heading">新規登録</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <!--エラーメッセージ表示-->
+        <div class="error-messages">
+          <% if @user.errors.any? %>
+            <% @user.errors.full_messages.each do |message| %>
+              <p><%= message %></p>
+            <% end %>
+          <% end %>
         </div>
-      <% end %>
+      
+        <!--ユーザー登録フォーム-->    
+        <%= form_with(url: '/users/create', local: true) do |form| %>
+          <p>名前</p>
+          <input type="text" name="name" value="<%= @user.name %>">
+          <p>メールアドレス</p>
+          <input type="email" name="email" value="<%= @user.email %>">
+          <p>パスワード</p>
+          <input type="password" name="password" value="<%= @user.password %>">
+          <div class="submit">
+          <input type="submit" value="登録する">
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

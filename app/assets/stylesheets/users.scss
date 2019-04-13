@@ -19,6 +19,11 @@
   width: 10%;
 }
 
+.user-left img{
+  width: 80px;
+  height: 80px;
+}
+
 .user-right{
   width: 90%;
   padding-left: 25px;
@@ -42,12 +47,13 @@
   margin: 20px 0 10px;
 }
 
-// users/new ////////////////////
-.user-new{
-  text-align: center;
-}
 
 // users/login_form /////////////
 .user-login-form{
   text-align: center;
+}
+
+/* users/new, users/edit ================================ */
+.users-form input {
+  margin-bottom: 15px;
 }

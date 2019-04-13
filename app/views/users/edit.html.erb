@@ -1,27 +1,31 @@
-<div class="main user-edit">
+<div class="main user-new">
   <div class="container">
-    <!--エラーメッセージ表示-->
-    <div class="error-messages">
-      <% if @user.errors.any? %>
-        <% @user.errors.full_messages.each do |message| %>
-          <p><%= message %></p>
-        <% end %>
-      <% end %>
-    </div>
-    
-    <!--ユーザー情報編集フォーム-->    
-    <div class="user-form">
-      <%= form_with(url: "/users/#{@user.id}/update", local: true) do |form| %>
-        <p>名前</p>
-        <input type="text" name="name" value="<%= @user.name %>">
-        <p>メールアドレス</p>
-        <input type="email" name="email" value="<%= @user.email %>">
-        <p>パスワード</p>
-        <input type="password" name="password" value="<%= @user.password %>">
-        <div class="submit">
-          <input type="submit" value="保存する">
+    <div class="form-heading">編集</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <!--エラーメッセージ表示-->
+        <div class="error-messages">
+          <% if @user.errors.any? %>
+            <% @user.errors.full_messages.each do |message| %>
+              <p><%= message %></p>
+            <% end %>
+          <% end %>
         </div>
-      <% end %>
+      
+        <!--ユーザー編集フォーム-->    
+        <%= form_with(url: "/users/#{@user.id}/update", local: true, multipart: true) do |form| %>
+          <p>名前</p>
+          <input type="text" name="name" value="<%= @user.name %>">
+          <p>メールアドレス</p>
+          <input type="email" name="email" value="<%= @user.email %>">
+          <p>画像</p>
+          <input type="file" name="image">
+          <p>パスワード</p>
+          <input type="password" name="password" value="<%= @user.password %>">
+          <div class="submit">
+          <input type="submit" value="登録する">
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

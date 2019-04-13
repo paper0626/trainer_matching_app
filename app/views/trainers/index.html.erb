@@ -4,7 +4,7 @@
     <% @trainers.each do |trainer| %>
       <div class="trainers-index-item">
         <div class="trainer-left">
-          <img src="/default.jpg"></img>
+          <img src= <%= "/user_images/#{trainer.user.image}" %> ></img>
         </div>
         <div class="trainer-right">
           <%= link_to(trainer.user.name, "/trainers/#{trainer.id}") %>

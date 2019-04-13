@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   
   # ユーザー新規登録（create）
   def create
-    @user = User.new(name: params[:name], email: params[:email], password: params[:password])
+    @user = User.new(name: params[:name], email: params[:email], image: "default.jpg", password: params[:password])
     if @user.save
       flash[:notice] = 'ユーザーとして新規登録しました'
       session[:user_id] = @user.id #ログインする
@@ -43,6 +43,13 @@ class UsersController < ApplicationController
     @user.email = params[:email]
     @user.password = params[:password]
     
+    #画像が選択されていたら、画像を保存
+    if params[:image]
+      @user.image = "#{@user.id}.jpg"
+      image = params[:image]
+      File.binwrite("public/user_images/#{@user.image}", image.read)
+    end
+    
     if @user.save
       flash[:notice] = '登録情報を編集しました'
       redirect_to("/users/#{@user.id}")
@@ -59,7 +66,9 @@ class UsersController < ApplicationController
     
     # トレーナーとして登録していれば、その情報を削除
     @trainer = Trainer.find_by(user_id: @user.id)
-    @trainer.destroy
+    if @trainer
+      @trainer.destroy
+    end
     
     session[:user_id] = nil # ログアウト
     flash[:notice] = '登録情報を削除しました'
@@ -95,7 +104,7 @@ class UsersController < ApplicationController
   
   # 他のユーザ情報を編集or削除できないようにする
   def ensure_correct_user
-    if params[:id] != @current_user.id
+    if params[:id].to_i != @current_user.id
       flash[:notice] = 'アクセスできません'
     end
   end
