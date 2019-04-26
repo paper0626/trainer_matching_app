@@ -4,7 +4,7 @@ class TrainersController < ApplicationController
   
   # トレーナー一覧表示
   def index
-    @trainers = Trainer.all
+    @trainers = Trainer.page(params[:page]).per(10)
   end
   
   # トレーナー詳細画面
@@ -49,7 +49,16 @@ class TrainersController < ApplicationController
   # トレーナー情報削除（destroy）
   def destroy
     @trainer = Trainer.find_by(id: params[:id])
+    @likes = Like.where(trainer_id: @trainer.id)
+
+    # お気に入り情報削除
+    @likes.each do |like|
+      like.destroy
+    end
+    
+    # トレーナー情報削除
     @trainer.destroy
+    
     flash[:notice] = '登録情報を削除しました'
     redirect_to("/users/#{@trainer.user_id}")
   end

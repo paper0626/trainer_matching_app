@@ -1,0 +1,17 @@
+<div class="main likes-index">
+  <div class="container">
+    <h1 class="users-heading">お気に入り一覧画面です</h1>
+    <% @likes.each do |like| %>
+      <% trainer = Trainer.find_by(id: like.trainer_id) %>
+      <% user = User.find_by(id: trainer.user_id) %>
+      <div class="users-index-item">
+        <div class="user-left">
+          <img src=<%= "/user_images/#{user.image}" %>></img>
+        </div>
+        <div class="user-right">
+          <%= link_to(user.name, "/trainers/#{trainer.id}") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

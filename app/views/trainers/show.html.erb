@@ -5,9 +5,17 @@
       <h2><%= @trainer.user.name %></h2>
       <p><%= @trainer.user.email %></p>
       <p><%= @trainer.message %></p>
-      <% if @trainer.user.id == @current_user.id %>
-        <%= link_to('トレーナー情報編集', "/trainers/#{@trainer.id}/edit") %>
-        <%= link_to('トレーナー情報削除', "/trainers/#{@trainer.id}/destroy", method: :post, data: {confirm: '本当に削除してよろしいですか？'}) %>
+      <!--ログイン時のみ下記を表示する-->
+      <% if @current_user %> 
+        <% if @trainer.user.id == @current_user.id %>
+          <%= link_to('トレーナー編集', "/trainers/#{@trainer.id}/edit") %>
+          <%= link_to('トレーナー削除', "/trainers/#{@trainer.id}/destroy", method: :post, data: {confirm: '本当に削除してよろしいですか？'}) %>
+        <% end %>
+        <% if Like.find_by(user_id: @current_user.id, trainer_id: @trainer.id) %>
+          <%= link_to('いいね済み', "/trainers/#{@trainer.id}/unlike", method: :post) %>
+        <% else %>
+          <%= link_to('いいね', "/trainers/#{@trainer.id}/like", method: :psot) %>
+        <% end %>
       <% end %>
     </div>
   </div>
