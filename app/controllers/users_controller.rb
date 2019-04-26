@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   
   # ユーザー一覧表示
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(10)
   end
   
   # ユーザー詳細画面
@@ -60,15 +60,26 @@ class UsersController < ApplicationController
   
   # ユーザ情報削除（destroy）
   def destroy
-    # ユーザ削除
     @user = User.find_by(id: params[:id])
-    @user.destroy
+    @trainer = Trainer.find_by(user_id: @user.id)
+    @like_users = Like.where(user_id: @user.id)
+    @like_trainers = Like.where(trainer_id: @trainer.id)
+    
+    # お気に入り情報削除
+    @like_users.each do |like|
+      like.destroy
+    end
+    @like_trainers.each do |like|
+      like.destroy
+    end
     
     # トレーナーとして登録していれば、その情報を削除
-    @trainer = Trainer.find_by(user_id: @user.id)
     if @trainer
       @trainer.destroy
     end
+    
+    # ユーザ削除
+    @user.destroy
     
     session[:user_id] = nil # ログアウト
     flash[:notice] = '登録情報を削除しました'
