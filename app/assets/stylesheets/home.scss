@@ -35,11 +35,29 @@ body {
 }
 
 .container {
-  max-width: 600px;
+  // max-width: 800px;
   margin: 60px auto;
   padding-left: 15px;
   padding-right: 15px;
   clear: both; //floatを解除する
+}
+
+.btn-home {
+  display: inline-block;
+  width: 300px;
+  font-size: 20px;
+  text-align: center;
+  background-color: #668ad8;
+  padding: 10px 0;
+  color: white;
+  border-radius: 5px;
+  border-bottom: solid 4px #627295;
+}
+
+.btn-home:active{
+  border-bottom: none;
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
 }
 
 // ヘッダー//////////////////////
@@ -71,6 +89,7 @@ header ul{
 // top //////////////////////////
 .home{
   width: 100%;
+  height: 600px;
   background-image: url(/running-573762_1280.jpg);
   background-size: cover;
   background-position: center 50%;
@@ -83,6 +102,7 @@ header ul{
   padding: 0 15px;
   margin: 0 auto;
 }
+
 
 /* フォーム================================ */
 .form {
