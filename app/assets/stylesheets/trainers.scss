@@ -5,32 +5,74 @@
   font-size: 48px;
 }
 
+.trainers-index-wrap{
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.trainers-index-wrap ul{
+  padding: 0;
+  margin-top: 15px;
+}
+
 .trainers-index-item {
-  padding: 20px 30px;
+  padding: 10px 15px;
   background-color: white;
-  overflow: hidden; //要素のボックスからはみ出た部分は隠す
-  box-shadow: 0 2px 6px #c1ced7;
-  display: table;
-  width: 100%;
+  // overflow: hidden; //要素のボックスからはみ出た部分は隠す
+  border: solid 1px #ccc;
+  border-top: solid 3px #6ddab1;
+  margin-top: 15px;
 }
 
-.trainer-left{
+.trainer-head{
+  padding: 0 10px 5px;
+  position: relative;
+}
+
+.btn-bookmark{
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.trainer-name{
+  font-size: 24px;
+  padding-left: 30px;
+}
+
+.trainer-inner{
+  border-top: solid 1px #ddd;
+  padding: 10px 0 0;
+  overflow: hidden;
+}
+
+.trainer-inner img{
+  width: 150px;
+  border-radius: 50%;
   float: left;
-  width: 10%;
+  
 }
 
-.trainer-left img{
-  width: 80px;
-  height: 80px;
+.trainer-inner-right{
+  // background: #eee;
+  overflow: hidden;
+  height: 160px;
+  padding-left: 15px;
 }
 
-.trainer-right{
-  width: 90%;
-  padding-left: 25px;
-  text-align: left;
-  display: table-cell;
-  vertical-align: middle;
+.trainer-message{
+  // background: #ccc;
 }
+
+.btn-send-message{
+  display: inline-block;
+  background-color: #668ad8;
+  color: white;
+  border-radius: 5px;
+  padding: 2px 5px;
+  margin-top: 5px;
+}
+
 
 // trainers/show //////////////////
 .trainer-show{

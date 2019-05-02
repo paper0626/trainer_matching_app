@@ -1,16 +1,34 @@
-<div class="main trainers-index">
-  <div class="container">
-    <h1 class="trainers-heading">トレーナー一覧画面です</h1>
+<div class="main">
+  <div class="container trainers-index-wrap">
+    <h1 class="trainers-heading">トレーナーを探す</h1>
+    <ul>
     <% @trainers.each do |trainer| %>
-      <div class="trainers-index-item">
-        <div class="trainer-left">
+      <li class="trainers-index-item">
+        <div class="trainer-head">
+          <div class="btn-bookmark">
+            <!--ログイン時のみお気に入り登録ボタンを表示する-->
+            <% if @current_user %> 
+              <% if Like.find_by(user_id: @current_user.id, trainer_id: trainer.id) %>
+                <%= link_to('お気に入り登録解除', "/trainers/#{trainer.id}/unlike", method: :post) %>
+              <% else %>
+                <%= link_to('お気に入り登録', "/trainers/#{trainer.id}/like", method: :psot) %>
+              <% end %>
+            <% end %>
+          </div>
+          <%= trainer.user.name %>
+          <%# link_to(trainer.user.name, "#", class: "trainer-name") %>        </div>
+        <div class="trainer-inner">
           <img src= <%= "/user_images/#{trainer.user.image}" %> ></img>
+          <div class="trainer-inner-right">
+            <div class="trainer-message">
+              <%= trainer.message %>
+            </div>
+            <%= link_to('このトレーナーにメッセージを送る', '#', class: "btn-send-message") %>
+          </div>
         </div>
-        <div class="trainer-right">
-          <%= link_to(trainer.user.name, "/trainers/#{trainer.id}") %>
-        </div>
-      </div>
+      </li>
     <% end %>
+    </ul>
     <%= paginate @trainers %>
   </div>
 </div>
