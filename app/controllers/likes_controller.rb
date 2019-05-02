@@ -8,12 +8,12 @@ class LikesController < ApplicationController
   def like
     @like = Like.new(user_id: @current_user.id, trainer_id: params[:trainer_id])
     @like.save
-    redirect_to("/trainers/#{params[:trainer_id]}")
+    redirect_to("/likes/index")
   end
   
   def unlike
     @like = Like.find_by(user_id: @current_user.id, trainer_id: params[:trainer_id])
     @like.destroy
-    redirect_to("/trainers/#{params[:trainer_id]}")
+    redirect_to("/likes/index")
   end
 end
